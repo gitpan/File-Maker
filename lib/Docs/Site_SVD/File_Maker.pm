@@ -10,27 +10,26 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
-$VERSION = '0.04';
-$DATE = '2004/05/10';
+$VERSION = '0.05';
+$DATE = '2004/05/13';
 $FILE = __FILE__;
 
 use vars qw(%INVENTORY);
 %INVENTORY = (
-    'lib/Docs/Site_SVD/File_Maker.pm' => [qw(0.04 2004/05/10), 'revised 0.03'],
-    'MANIFEST' => [qw(0.04 2004/05/10), 'generated, replaces 0.03'],
-    'Makefile.PL' => [qw(0.04 2004/05/10), 'generated, replaces 0.03'],
-    'README' => [qw(0.04 2004/05/10), 'generated, replaces 0.03'],
-    'lib/File/Maker.pm' => [qw(0.04 2004/05/10), 'revised 0.03'],
+    'lib/Docs/Site_SVD/File_Maker.pm' => [qw(0.05 2004/05/13), 'revised 0.04'],
+    'MANIFEST' => [qw(0.05 2004/05/13), 'generated, replaces 0.04'],
+    'Makefile.PL' => [qw(0.05 2004/05/13), 'generated, replaces 0.04'],
+    'README' => [qw(0.05 2004/05/13), 'generated, replaces 0.04'],
+    'lib/File/Maker.pm' => [qw(0.05 2004/05/13), 'revised 0.04'],
     't/File/Maker.d' => [qw(0.01 2004/05/10), 'unchanged'],
     't/File/Maker.pm' => [qw(0.01 2004/05/10), 'unchanged'],
-    't/File/Maker.t' => [qw(0.01 2004/05/10), 'unchanged'],
+    't/File/Maker.t' => [qw(0.04 2004/05/13), 'revised 0.03'],
     't/File/_Maker_/MakerDB.pm' => [qw(0.01 2004/05/10), 'unchanged'],
-    't/File/File/Package.pm' => [qw(1.17 2004/05/10), 'revised 1.16'],
-    't/File/File/SmartNL.pm' => [qw(1.15 2004/05/10), 'revised 1.14'],
-    't/File/Test/Tech.pm' => [qw(1.24 2004/05/10), 'revised 1.23'],
-    't/File/Data/Secs2.pm' => [qw(1.22 2004/05/10), 'revised 1.21'],
-    't/File/Data/SecsPack.pm' => [qw(0.07 2004/05/10), 'revised 0.06'],
-    't/File/Data/Startup.pm' => [qw(0.06 2004/05/10), 'revised 0.05'],
+    't/File/File/Package.pm' => [qw(1.17 2004/05/13), 'unchanged'],
+    't/File/File/SmartNL.pm' => [qw(1.16 2004/05/13), 'revised 1.15'],
+    't/File/Test/Tech.pm' => [qw(1.25 2004/05/13), 'revised 1.24'],
+    't/File/Data/Secs2.pm' => [qw(1.23 2004/05/13), 'revised 1.22'],
+    't/File/Data/SecsPack.pm' => [qw(0.08 2004/05/13), 'revised 0.07'],
 
 );
 
@@ -49,19 +48,23 @@ use vars qw(%INVENTORY);
 
 
 
+=head1 NAME
+
+Docs::Site_SVD::File_Maker - mimics a make by loading a database and calling targets methods
+
 =head1 Title Page
 
  Software Version Description
 
  for
 
- File::Maker - mimics a make by loading a database and calling targets methods
+ Docs::Site_SVD::File_Maker - mimics a make by loading a database and calling targets methods
 
- Revision: C
+ Revision: D
 
- Version: 0.04
+ Version: 0.05
 
- Date: 2004/05/10
+ Date: 2004/05/13
 
  Prepared for: General Public 
 
@@ -109,7 +112,7 @@ and macros in a "makefile".
 
 =head2 1.3 Document overview.
 
-This document releases File::Maker version 0.04
+This document releases File::Maker version 0.05
 providing description of the inventory, installation
 instructions and other information necessary to
 utilize and track this release.
@@ -124,7 +127,7 @@ system file specification.
 
 This document releases the file 
 
- File-Maker-0.04.tar.gz
+ File-Maker-0.05.tar.gz
 
 found at the following repository(s):
 
@@ -211,21 +214,20 @@ consists of the following files:
 
  file                                                         version date       comment
  ------------------------------------------------------------ ------- ---------- ------------------------
- lib/Docs/Site_SVD/File_Maker.pm                              0.04    2004/05/10 revised 0.03
- MANIFEST                                                     0.04    2004/05/10 generated, replaces 0.03
- Makefile.PL                                                  0.04    2004/05/10 generated, replaces 0.03
- README                                                       0.04    2004/05/10 generated, replaces 0.03
- lib/File/Maker.pm                                            0.04    2004/05/10 revised 0.03
+ lib/Docs/Site_SVD/File_Maker.pm                              0.05    2004/05/13 revised 0.04
+ MANIFEST                                                     0.05    2004/05/13 generated, replaces 0.04
+ Makefile.PL                                                  0.05    2004/05/13 generated, replaces 0.04
+ README                                                       0.05    2004/05/13 generated, replaces 0.04
+ lib/File/Maker.pm                                            0.05    2004/05/13 revised 0.04
  t/File/Maker.d                                               0.01    2004/05/10 unchanged
  t/File/Maker.pm                                              0.01    2004/05/10 unchanged
- t/File/Maker.t                                               0.01    2004/05/10 unchanged
+ t/File/Maker.t                                               0.04    2004/05/13 revised 0.03
  t/File/_Maker_/MakerDB.pm                                    0.01    2004/05/10 unchanged
- t/File/File/Package.pm                                       1.17    2004/05/10 revised 1.16
- t/File/File/SmartNL.pm                                       1.15    2004/05/10 revised 1.14
- t/File/Test/Tech.pm                                          1.24    2004/05/10 revised 1.23
- t/File/Data/Secs2.pm                                         1.22    2004/05/10 revised 1.21
- t/File/Data/SecsPack.pm                                      0.07    2004/05/10 revised 0.06
- t/File/Data/Startup.pm                                       0.06    2004/05/10 revised 0.05
+ t/File/File/Package.pm                                       1.17    2004/05/13 unchanged
+ t/File/File/SmartNL.pm                                       1.16    2004/05/13 revised 1.15
+ t/File/Test/Tech.pm                                          1.25    2004/05/13 revised 1.24
+ t/File/Data/Secs2.pm                                         1.23    2004/05/13 revised 1.22
+ t/File/Data/SecsPack.pm                                      0.08    2004/05/13 revised 0.07
 
 
 =head2 3.3 Changes
@@ -290,6 +292,17 @@ Probably differences in New Line for Unix versus Microsoft. Thus, run
 the C<__DATA__> through the smartNL routine to see if File-Maker has
 a better reception in the UNIX world.
 
+=item File-Maker-0.04
+
+Had C<DataPort::Maker> for POD NAME. Changed POD NAME to C<File::Maker>
+
+\item File-Maker-0.05
+
+Changed synopsis for a target so that it now nay return a C<$self> object reference
+as well as C<$success>. This allows targets to pass data between each other
+via the C<$self> underlying data or even create a different class object
+for $self.
+
 =back
 
 =head2 3.4 Adaptation data.
@@ -328,13 +341,13 @@ Enter one of the following repositories in a web browser:
   http://www.softwarediamonds/packages/
   http://www.perl.com/CPAN/authors/id/S/SO/SOFTDIA/
 
-Right click on 'File-Maker-0.04.tar.gz' and download to a temporary
+Right click on 'File-Maker-0.05.tar.gz' and download to a temporary
 installation directory.
 Enter the following where $make is 'nmake' for microsoft
 windows; otherwise 'make'.
 
- gunzip File-Maker-0.04.tar.gz
- tar -xf File-Maker-0.04.tar
+ gunzip File-Maker-0.05.tar.gz
+ tar -xf File-Maker-0.05.tar
  perl Makefile.PL
  $make test
  $make install
@@ -435,22 +448,20 @@ United States
 __DATA__
 
 
-DISTNAME:
-
-File-Maker^
+DISTNAME: File-Maker^
 REPOSITORY_DIR: packages^
 
-VERSION : 0.04^
+VERSION : 0.05^
 FREEZE: 1^
 PREVIOUS_DISTNAME:  ^
-PREVIOUS_RELEASE: 0.03^
-REVISION: C^
+PREVIOUS_RELEASE: 0.04^
+REVISION: D^
 
 AUTHOR  : SoftwareDiamonds.com E<lt>support@SoftwareDiamonds.comE<gt>^
 
 ABSTRACT: mimics a make by loading a database and calling targets methods^
 
-TITLE   : File::Maker - mimics a make by loading a database and calling targets methods^
+TITLE   : Docs::Site_SVD::File_Maker - mimics a make by loading a database and calling targets methods^
 END_USER: General Public^
 COPYRIGHT: copyright 2004 Software Diamonds^
 CLASSIFICATION: NONE^
@@ -479,7 +490,6 @@ lib/File/SmartNL.pm => t/File/File/SmartNL.pm
 lib/Test/Tech.pm => t/File/Test/Tech.pm
 lib/Data/Secs2.pm => t/File/Data/Secs2.pm
 lib/Data/SecsPack.pm => t/File/Data/SecsPack.pm
-lib/Data/Startup.pm => t/File/Data/Startup.pm
 ^
 
 PREREQ_PM: 
@@ -554,6 +564,17 @@ CORRECTIVE:
 Probably differences in New Line for Unix versus Microsoft. Thus, run
 the C<__DATA__> through the smartNL routine to see if File-Maker has
 a better reception in the UNIX world.
+
+\=item File-Maker-0.04
+
+Had C<DataPort::Maker> for POD NAME. Changed POD NAME to C<File::Maker>
+
+\item File-Maker-0.05
+
+Changed synopsis for a target so that it now nay return a C<$self> object reference
+as well as C<$success>. This allows targets to pass data between each other
+via the C<$self> underlying data or even create a different class object
+for $self.
 
 \=back
 
@@ -748,6 +769,10 @@ HTML:
 
 ^
 ~-~
+
+
+
+
 
 
 

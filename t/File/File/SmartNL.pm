@@ -15,8 +15,8 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE);
-$VERSION = '1.15';
-$DATE = '2004/05/10';
+$VERSION = '1.16';
+$DATE = '2004/05/13';
 $FILE = __FILE__;
 
 use File::Spec; # Added mkpath option, 2003/11/10
@@ -97,15 +97,18 @@ sub fin
    # the file is opened and the file name is a 
    # file handle.
    #
-   my $fh;
-   if( ref($file) eq 'GLOB' ) {
+   my ($fh,$is_handle);
+   if( (UNIVERSAL::isa($file,'GLOB') or UNIVERSAL::isa(\$file,'GLOB')) 
+		and defined fileno($file) ) {
        $fh = $file;
+       $is_handle = 1;
    }
    else {
        unless(open $fh, "<$file") {
            $event = "# Cannot open <$file\n#\t$!";
            goto EVENT;
        }
+       $is_handle = 0;
    } 
 
    #####
@@ -118,9 +121,11 @@ sub fin
    #####
    # Close the file
    #
-   unless(close($fh)) {
-       $event = "# Cannot close $file\n#\t$!";
-       goto EVENT;
+   unless($is_handle) {
+       unless(close($fh)) {
+           $event = "# Cannot close $file\n#\t$!";
+           goto EVENT;
+       }
    }
    return $data unless( $data );
 
@@ -134,7 +139,7 @@ sub fin
 
 EVENT:
    $event .= "\tFile::SmartNL::fin $VERSION\n";  
-   if($options->warn) {
+   if($options->{warn}) {
        warn( $event );
        return undef;
    }         
@@ -189,7 +194,7 @@ sub fout
 
 EVENT:
    $event .= "\n#\tFile::SmartNL::fout $VERSION\n";  
-   if($options->warn) {
+   if($options->{warn}) {
        warn( "# Cannot close $file\n");
        return undef;
    }         

@@ -10,8 +10,8 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE);
-$VERSION = '0.04';
-$DATE = '2004/05/10';
+$VERSION = '0.05';
+$DATE = '2004/05/13';
 
 use vars qw(@ISA @EXPORT_OK);
 use Exporter;
@@ -103,7 +103,7 @@ sub make_targets
                  }
              }
 
-             my (@args,$method);
+             my (@args,$method,$result);
              foreach $target (@{$expanded_target}) {
                  
                  $method = $target;  
@@ -112,7 +112,11 @@ sub make_targets
                      ($method, @args) = @$target;                
                  }
                  
-                 unless ($self->$method( @args )) {
+                 $result = $self->$method( @args );
+                 if(ref($result) ) {
+                     $self = $result;
+                 }
+                 elsif ( !defined($result) ) {
                      $success = undef;
                      warn( "Target $method failed.\n" );
                      last;
@@ -203,7 +207,7 @@ __END__
 
 =head1 NAME
 
-DataPort::Maker - mimics a make by loading a database and calling targets methods 
+File::Maker - mimics a make by loading a database and calling targets methods 
 
 =head1 SYNOPSIS
 
@@ -234,6 +238,16 @@ that subroutine will also process a hash reference, C<\%options>, C<{@options}>.
 See the description for a subroutine for details and exceptions.
 
 =head1 DESCRIPTION
+
+When porting low level C code from one architecture to another,
+makefiles do provide some level of automation and save some
+time.
+However, once Perl or another high-level language is up and
+running, the high-level language usually allows much more
+efficient use of programmers time; otherwise, whats point
+of the high-level language.
+Thus, makes great economically sense to switch from makefiles
+to high-level language.
 
 The C<File::Maker> program module provides a "make" style interface
 as shown in the herein above.
@@ -296,13 +310,20 @@ The C<make_targets> subroutine executes the C<@targets>
 in order after substituing an expanded list C<$target[$targets[$i]}>
 list if it exists, as follows:
 
- $self->$target[$i]( @args )  
+ $result = $self->$target[$i]( @args )  
 
 The C<@args> do not exists unless the C<$taget[$i]> is itself an
 array reference in which case the C<make_targets> subroutine
 assumes the array referenced is
 
  [$target, @args]
+
+The return C<$result> may be a reference to an object, usually the
+same class as the original $result, or a C<$success> flag of 1 or
+undef. If C<$result> is a reference, the C<make_targets> subroutine
+will set <$self> to the new object C<$result>.
+Thus, by returning an reference, a target may pass data to the
+next targe or even change the class of C<$self>.
 
 =head2 new
 
