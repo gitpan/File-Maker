@@ -15,7 +15,7 @@ use Math::BigFloat 1.40;
 use Data::Startup;
 
 use vars qw( $VERSION $DATE $FILE);
-$VERSION = '0.06';
+$VERSION = '0.07';
 $DATE = '2004/05/10';
 $FILE = __FILE__;
 
@@ -1266,8 +1266,8 @@ Data::SecsPack - pack and unpack numbers in accordance with SEMI E5-94
  \@numbers  = $secspack->unpack_num($format, $number_string, @options); 
  
 Generally, if a subroutine will process a list of options, C<@options>,
-that subroutine will also process an array reference, C<\@options>, C<[@options],
-or hash reference, C<\%options>, C<{@options}.
+that subroutine will also process an array reference, C<\@options>, C<[@options]>,
+or hash reference, C<\%options>, C<{@options}>.
 If a subroutine will process an array reference, C<\@options>, C<[@options]>,
 that subroutine will also process a hash reference, C<\%options>, C<{@options}>.
 See the description for a subroutine for details and exceptions.
@@ -2299,10 +2299,10 @@ follow on the next lines as comments. For example,
  #
 
  ##################
- # str2float(' 78 -2.4E-6 0.25', ' 512E4 hello world') numbers
+ # str2float(' 78 -2.4E-6 0.0025 0', ' 512E4 hello world') numbers
  # 
 
- ($strings, @numbers) = str2float(' 78 -2.4E-6 0.0025', ' 512E4 hello world')
+ ($strings, @numbers) = str2float(' 78 -2.4E-6 0.0025  0', ' 512E4 hello world')
  [@numbers]
 
  # [
@@ -2319,6 +2319,10 @@ follow on the next lines as comments. For example,
  #            -3
  #          ],
  #          [
+ #            '0',
+ #            -1
+ #          ],
+ #          [
  #            '512',
  #            '6'
  #          ]
@@ -2326,20 +2330,19 @@ follow on the next lines as comments. For example,
  #
 
  ##################
- # str2float(' 78 -2.4E-6 0.25', ' 512E4 hello world') @strings
+ # str2float(' 78 -2.4E-6 0.0025 0', ' 512E4 hello world') @strings
  # 
 
- ($strings, @numbers) = str2float(' 78 -2.4E-6 0.0025', ' 512E4 hello world')
  join( ' ', @$strings)
 
  # 'hello world'
  #
 
  ##################
- # str2float(' 78 -2.4E-6 0.25 0xFF 077', ' 512E4 hello world', {ascii_float => 1}) numbers
+ # str2float(' 78 -2.4E-6 0.0025 0xFF 077 0', ' 512E4 hello world', {ascii_float => 1}) numbers
  # 
 
- ($strings, @numbers) = str2float(' 78 -2.4E-6 0.0025 0xFF 077', ' 512E4 hello world', {ascii_float => 1})
+ ($strings, @numbers) = str2float(' 78 -2.4E-6 0.0025 0xFF 077 0', ' 512E4 hello world', {ascii_float => 1})
  [@numbers]
 
  # [
@@ -2348,15 +2351,15 @@ follow on the next lines as comments. For example,
  #          '0.0025',
  #          '255',
  #          '63',
+ #          '0',
  #          '512E4'
  #        ]
  #
 
  ##################
- # str2float(' 78 -2.4E-6 0.25', ' 512E4 hello world', {ascii_float => 1}) @strings
+ # str2float(' 78 -2.4E-6 0.0025 0xFF 077 0', ' 512E4 hello world', {ascii_float => 1}) @strings
  # 
 
- ($strings, @numbers) = str2float(' 78 -2.4E-6 0.0025', ' 512E4 hello world')
  join( ' ', @$strings)
 
  # 'hello world'
@@ -2558,7 +2561,7 @@ distribution.
 
 =item 3
 
-The installation of the binary or source
+Commercial installation of the binary or source
 must visually present to the installer 
 the above copyright notice,
 this list of conditions intact,
@@ -2566,7 +2569,10 @@ that the original source is available
 at http://softwarediamonds.com
 and provide means
 for the installer to actively accept
-the list of conditions.
+the list of conditions; 
+otherwise, a license fee must be paid to
+Softwareware Diamonds.
+
 
 =back
 

@@ -23,7 +23,7 @@ my $tests = join ' ',unix2os('t/File/Maker.t');
 WriteMakefile(
     NAME => 'File::Maker',
     DISTNAME => 'File-Maker',
-    VERSION  => '0.03',
+    VERSION  => '0.04',
     dist     => {COMPRESS => 'gzip',
                 'gz' => 'gz'},
     test     => {TESTS => $tests},

@@ -14,7 +14,7 @@ use Data::Secs2 qw(stringify);
 use Data::Startup;
 
 use vars qw($VERSION $DATE $FILE);
-$VERSION = '1.23';
+$VERSION = '1.24';
 $DATE = '2004/05/10';
 $FILE = __FILE__;
 
@@ -1686,6 +1686,18 @@ this list of conditions and the following
 disclaimer in the documentation and/or
 other materials provided with the
 distribution.
+
+=item 3
+
+The installation of the binary or source
+must visually present to the installer 
+the above copyright notice,
+this list of conditions intact,
+that the original source is available
+at http://softwarediamonds.com
+and provide means
+for the installer to actively accept
+the list of conditions.
 
 =back
 

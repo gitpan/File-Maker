@@ -10,7 +10,7 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE);
-$VERSION = '0.03';
+$VERSION = '0.04';
 $DATE = '2004/05/10';
 
 use vars qw(@ISA @EXPORT_OK);
@@ -187,7 +187,10 @@ sub load_db
      $self->{FormDB_File} = File::Spec->rel2abs( $formDB_file );
 
      $self->{FormDB_PM} = $formDB_pm;
-     $self->{FormDB_Record} = "\n" . join '',@data;
+     my $data = join '',@data;  # smart NL to convert to site NL
+     $data =~ s/\015\012|\012\015/\012/g;  # replace LFCR or CRLF with a LF
+     $data =~ s/\012|\015/\n/g;   # replace CR or LF with logical \n 
+     $self->{FormDB_Record} = "\n" . $data;
      $self->{FormDB} = $fields[0];
      @INC = @restore_inc; 
      $self
@@ -273,7 +276,7 @@ The C<load_db> subroutine loads the C<__DATA__> of C<$pm> using
 L<C<Tie::Form>|Tie::Form> progrma module. The results are return
 as a hash. If called as a object, the objec C<$maker> have hash
 data. The return keys are as follows:
- 
+
  key              description
  -------------------------------------------------------------- 
  FormDB_File      the absoute file of $pm
@@ -292,7 +295,7 @@ data. The return keys are as follows:
 The C<make_targets> subroutine executes the C<@targets>
 in order after substituing an expanded list C<$target[$targets[$i]}>
 list if it exists, as follows:
- 
+
  $self->$target[$i]( @args )  
 
 The C<@args> do not exists unless the C<$taget[$i]> is itself an
@@ -615,6 +618,20 @@ this list of conditions and the following
 disclaimer in the documentation and/or
 other materials provided with the
 distribution.
+
+=item 3
+
+Commercial installation of the binary or source
+must visually present to the installer 
+the above copyright notice,
+this list of conditions intact,
+that the original source is available
+at http://softwarediamonds.com
+and provide means
+for the installer to actively accept
+the list of conditions; 
+otherwise, a license fee must be paid to
+Softwareware Diamonds.
 
 =back
 
