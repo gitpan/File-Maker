@@ -10,7 +10,7 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
-$VERSION = '0.02';
+$VERSION = '0.03';
 $DATE = '2004/05/10';
 $FILE = __FILE__;
 
@@ -80,7 +80,7 @@ L<STD FormDB Test Description Fields|Test::STDmaker/STD FormDB Test Description 
 
 =head2 Test Plan
 
- T: 11^
+ T: 12^
 
 =head2 ok: 1
 
@@ -92,6 +92,7 @@ L<STD FormDB Test Description Fields|Test::STDmaker/STD FormDB Test Description 
      use File::SmartNL;
      my $snl = 'File::SmartNL';
      use File::Spec;
+     my @inc = @INC;
  ^
  VO: ^
   N: UUT not loaded^
@@ -192,6 +193,13 @@ L<STD FormDB Test Description Fields|Test::STDmaker/STD FormDB Test Description 
   A: $maker->make( qw(target3 target4) )^
   E: ' target1  target3  target1  target2  target4 '^
  ok: 11^
+
+=head2 ok: 12
+
+  N: Include stayed same^
+  A: [@INC]^
+  E: [@inc]^
+ ok: 12^
 
 
 
@@ -298,7 +306,7 @@ Demo: Maker.d^
 Verify: Maker.t^
 
 
- T: 11^
+ T: 12^
 
 
  C:
@@ -310,6 +318,8 @@ Verify: Maker.t^
     my $snl = 'File::SmartNL';
 
     use File::Spec;
+
+    my @inc = @INC;
 ^
 
 VO: ^
@@ -395,6 +405,11 @@ ok: 10^
  A: $maker->make( qw(target3 target4) )^
  E: ' target1  target3  target1  target2  target4 '^
 ok: 11^
+
+ N: Include stayed same^
+ A: [@INC]^
+ E: [@inc]^
+ok: 12^
 
 
 See_Also: L<File::Maker>^

@@ -7,7 +7,7 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE);
-$VERSION = '0.01';   # automatically generated file
+$VERSION = '0.02';   # automatically generated file
 $DATE = '2004/05/10';
 
 
@@ -100,7 +100,9 @@ demo( "\ \ \ \ use\ File\:\:Package\;\
 \ \ \ \ use\ File\:\:SmartNL\;\
 \ \ \ \ my\ \$snl\ \=\ \'File\:\:SmartNL\'\;\
 \
-\ \ \ \ use\ File\:\:Spec\;"); # typed in command           
+\ \ \ \ use\ File\:\:Spec\;\
+\
+\ \ \ \ my\ \@inc\ \=\ \@INC\;"); # typed in command           
           use File::Package;
     my $fp = 'File::Package';
     my $loaded = '';
@@ -108,7 +110,9 @@ demo( "\ \ \ \ use\ File\:\:Package\;\
     use File::SmartNL;
     my $snl = 'File::SmartNL';
 
-    use File::Spec;; # execution
+    use File::Spec;
+
+    my @inc = @INC;; # execution
 
 print << "EOF";
 
@@ -238,6 +242,18 @@ EOF
 
 demo( "\$maker\-\>make\(\ qw\(target3\ target4\)\ \)", # typed in command           
       $maker->make( qw(target3 target4) )); # execution
+
+
+print << "EOF";
+
+ ##################
+ # Include stayed same
+ # 
+ 
+EOF
+
+demo( "\[\@INC\]", # typed in command           
+      [@INC]); # execution
 
 
 

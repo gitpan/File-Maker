@@ -14,7 +14,7 @@ use Data::Secs2 qw(stringify);
 use Data::Startup;
 
 use vars qw($VERSION $DATE $FILE);
-$VERSION = '1.22';
+$VERSION = '1.23';
 $DATE = '2004/05/10';
 $FILE = __FILE__;
 
@@ -245,7 +245,7 @@ sub ok_sub
     $self = ref($self) ? $self : $tech_p;
 
     my ($diagnostic,$name) = ('',''); 
-    my $options = Data::Startup->new(pop @_) if ref($_[-1]);
+    my $options = Data::Startup->new(pop @_) if (3 < @_) && ref($_[-1]);
 
     $diagnostic = $options->{diagnostic} if defined $options->{diagnostic};
     $name = $options->{name} if defined $options->{name};
@@ -371,7 +371,7 @@ sub skip_sub
     $self = ref($self) ? $self : $tech_p;
 
     my ($diagnostic,$name) = ('',''); 
-    my $options = Data::Startup->new(pop @_) if ref($_[-1]);
+    my $options = Data::Startup->new(pop @_) if (4 < @_) && ref($_[-1]);
 
     $diagnostic = $options->{diagnostic} if $options->{diagnostic};
     $name = $options->{name} if $options->{name};

@@ -10,7 +10,7 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE);
-$VERSION = '0.02';
+$VERSION = '0.03';
 $DATE = '2004/05/10';
 
 use vars qw(@ISA @EXPORT_OK);
@@ -157,6 +157,7 @@ sub load_db
      my $error;
      $formDB_pm = ref($formDB_pm) if ref($formDB_pm);
      if($error = File::Package->load_package($formDB_pm)) {
+         @INC = @restore_inc; 
          return $error ;
      }
 
@@ -188,6 +189,7 @@ sub load_db
      $self->{FormDB_PM} = $formDB_pm;
      $self->{FormDB_Record} = "\n" . join '',@data;
      $self->{FormDB} = $fields[0];
+     @INC = @restore_inc; 
      $self
 }
 
@@ -336,6 +338,8 @@ follow on the next lines as comments. For example,
      my $snl = 'File::SmartNL';
 
      use File::Spec;
+
+     my @inc = @INC;
 
  ##################
  # Load UUT
@@ -532,6 +536,22 @@ follow on the next lines as comments. For example,
  # ' target1  target3  target1  target2  target4 '
  #
 
+ ##################
+ # Include stayed same
+ # 
+
+ [@INC]
+
+ # [
+ #          'E:\User\SoftwareDiamonds\installation\t\File\lib',
+ #          'E:/User/SoftwareDiamonds/installation/t/File',
+ #          'E:\User\SoftwareDiamonds\installation\lib',
+ #          'D:/Perl/lib',
+ #          'D:/Perl/site/lib',
+ #          '.'
+ #        ]
+ #
+
 =head1 QUALITY ASSURANCE
 
 Running the test script C<Maker.t> verifies
@@ -621,7 +641,7 @@ ANY WAY OUT OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =item L<Tie::Form|Tie::Form>
 
-=item L<Docs::Site_SVD::File_Make|Docs::Site_SVD::File_Maker>
+=item L<Docs::Site_SVD::File_Maker|Docs::Site_SVD::File_Maker>
 
 =item L<Test::STDmaker|Test::STDmaker>
 

@@ -7,7 +7,7 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE);
-$VERSION = '0.02';   # automatically generated file
+$VERSION = '0.03';   # automatically generated file
 $DATE = '2004/05/10';
 $FILE = __FILE__;
 
@@ -79,7 +79,7 @@ BEGIN {
    #
    require Test::Tech;
    Test::Tech->import( qw(finish is_skip ok plan skip skip_tests tech_config) );
-   plan(tests => 11);
+   plan(tests => 12);
 
 }
 
@@ -141,6 +141,8 @@ use warnings;
     my $snl = 'File::SmartNL';
 
     use File::Spec;
+
+    my @inc = @INC;
 
 ok(  $loaded = $fp->is_package_loaded('_Maker_::MakerDB'), # actual results
       '', # expected results
@@ -241,6 +243,13 @@ ok(  $maker->make( qw(target3 target4) ), # actual results
      "target3 target4");
 
 #  ok:  11
+
+ok(  [@INC], # actual results
+     [@inc], # expected results
+     "",
+     "Include stayed same");
+
+#  ok:  12
 
 
 =head1 comment out
