@@ -7,7 +7,7 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE);
-$VERSION = '0.01';   # automatically generated file
+$VERSION = '0.02';   # automatically generated file
 $DATE = '2004/05/10';
 $FILE = __FILE__;
 
@@ -187,6 +187,7 @@ ok(  $maker->{FormDB_PM}, # actual results
 
 ok(  $maker->{FormDB_Record}, # actual results
      '
+
 Revision: -^
 End_User: General Public^
 Author: http://www.SoftwareDiamonds.com support@SoftwareDiamonds.com^

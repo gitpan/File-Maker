@@ -10,7 +10,7 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
-$VERSION = '0.01';
+$VERSION = '0.02';
 $DATE = '2004/05/10';
 $FILE = __FILE__;
 
@@ -348,6 +348,7 @@ ok: 5^
 
  E:
 '
+
 Revision: -^^
 End_User: General Public^^
 Author: http://www.SoftwareDiamonds.com support@SoftwareDiamonds.com^^

@@ -10,7 +10,7 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE);
-$VERSION = '0.01';
+$VERSION = '0.02';
 $DATE = '2004/05/10';
 
 use vars qw(@ISA @EXPORT_OK);
@@ -186,7 +186,7 @@ sub load_db
      $self->{FormDB_File} = File::Spec->rel2abs( $formDB_file );
 
      $self->{FormDB_PM} = $formDB_pm;
-     $self->{FormDB_Record} = join '',@data;
+     $self->{FormDB_Record} = "\n" . join '',@data;
      $self->{FormDB} = $fields[0];
      $self
 }
@@ -358,7 +358,7 @@ follow on the next lines as comments. For example,
 
  # use vars qw($VERSION $DATE $FILE );
  # $VERSION = '0.01';
- # $DATE = '2003/07/04';
+ # $DATE = '2004/05/10';
  # $FILE = __FILE__;
 
  # use File::Maker;
@@ -465,6 +465,7 @@ follow on the next lines as comments. For example,
  $maker->{FormDB_Record}
 
  # '
+
  #Revision: -^
  #End_User: General Public^
  #Author: http://www.SoftwareDiamonds.com support@SoftwareDiamonds.com^
